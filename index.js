@@ -1,14 +1,15 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
-const WebhookRouter = require('./routes/WebhookRouter.js');
+const express   = require('express')
+    , dotenv    = require('dotenv')
+    , router    = require('./src/routes/index.route');
 
 dotenv.config();
+
 const app = express();
 
-app.use(bodyParser.json());
-app.use(WebhookRouter);
+app.use(express.json());
+app.use('/api/v1', router);
 
-app.listen(process.env.APP_PORT, ()=> {
-    console.log("Server up and running...");
+const port = process.env.PORT || 2007;
+app.listen(port, () => {
+  console.log(`server is running in port ${port}`);
 });
