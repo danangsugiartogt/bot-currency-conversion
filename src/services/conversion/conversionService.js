@@ -1,6 +1,6 @@
 const { successResponse, errorResponse } = require('../../helpers/response')
     , axios                              = require('axios');
-
+  
 /**
  *
  * Get conversion base on command
@@ -19,10 +19,10 @@ const getConversionBase = async(command) => {
 
   // TODO:: call conversion api
   let config = {
-    headers: {'apikey': 'g6hWTYLwwjZoQ0ePMKbCmzeQs2LWVIWR'}
+    headers: {'apikey': process.env.APILAYER_API_KEY}
   };
 
-  const requestURL = `https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`;
+  const requestURL = process.env.APILAYER_BASE_URL + `exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`;
 
   console.log(`conversion service: requestURL ${requestURL}`);
 

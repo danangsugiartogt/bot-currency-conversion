@@ -1,7 +1,10 @@
 const axios = require('axios');
 
 const sendMessage = async (chatId, message) => {
-    axios.post('https://api.telegram.org/bot5725767934:AAG8LGD2Su4eJcFXsFOV2qrujKgefkQCphc/sendMessage',
+
+    const requestURL = process.env.TELEGRAM_BASE_URL + 'bot' + process.env.TELEGRAM_BOT_TOKEN + '/sendMessage';
+
+    return axios.post(requestURL,
     { 
         chat_id: chatId,
         text: message
