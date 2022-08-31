@@ -7,4 +7,4 @@ const currencyFormatter = (code, amount) => {
     return formatter.format(amount);
 }
 
-module.exports = { currencyFormatter };
+module.exports = currencyFormatter ;
