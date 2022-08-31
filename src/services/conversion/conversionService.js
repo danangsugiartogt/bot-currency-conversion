@@ -1,5 +1,6 @@
 const { successResponse, errorResponse } = require('../../helpers/response')
-    , axios                              = require('axios');
+    , axios                              = require('axios')
+    , currencyFormatter                  = require('../../helpers/currency');
   
 /**
  *
@@ -11,8 +12,8 @@ const getConversionBase = async(command) => {
   console.log(`conversion service: command param ${command}`);
 
   const params = command.split(" ");
-  const to = params[1];
-  const from = params[2];
+  const from = params[1];
+  const to = params[2];
   const amount= params[3];
 
   console.log(command);
@@ -31,7 +32,7 @@ const getConversionBase = async(command) => {
     .then((response) => {
       console.log(response.data.result);
 
-      return response.data.result;
+      return currencyFormatter(to, response.data.result);
     })
     .catch((e) => {
       console.log(`conversion service: response failed from layerapi ${e.message}`);
